@@ -1,0 +1,41 @@
+body {
+    background: url("stardust.png");
+}
+
+.jumbotron {
+    color: rgb(75, 72, 72);
+    background-color: white !important;
+    border-radius: 0 !important;
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+p {
+    font-size: 80%;
+    margin-bottom: 0 !important;
+}
+
+
+.container { 
+    margin-bottom: 2rem !important;
+    
+}
+#row2 {
+    margin-bottom: 2rem !important;
+}
+
+#crystals {
+align-content: center !important;
+}   
+
+img {
+    max-width: 100%;
+    border-radius: 3px;
+
+}
+
+button { 
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
