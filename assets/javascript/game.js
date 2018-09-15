@@ -25,7 +25,7 @@ var crystals = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 function uniqueCrystalNumber () {
   var index = randomNumber (0, crystals.length - 1);
   var number = crystals[index];
-  console.log(index);
+  //sconsole.log(index);
   crystals = crystals.filter(function(value){
   return value !== number;
   });
@@ -123,7 +123,10 @@ $("#Losses").text(lossesCounter);
 $("#playerScore").text(playerScore);
 
 function resetCrystalNumber () {
-  crystals = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  gray = Math.floor(Math.random() * crystals.length) + 1;
+  purple = Math.floor(Math.random() * crystals.length) + 1;
+  green = Math.floor(Math.random() * crystals.length) + 1;
+  yellow = Math.floor(Math.random() * crystals.length) + 1;
   targetNumber = randomNumber (19, 120);
   playerScore = 0;
   $("#playerScore").text(playerScore);
@@ -137,7 +140,7 @@ function resetCrystalValues () {
   $("#green").attr("data-crystalValue", uniqueCrystalNumber());
   $("#yellow").attr("data-crystalValue", uniqueCrystalNumber());
 };
-console.log(gray, purple, green, yellow);
+//console.log(gray, purple, green, yellow);
 
 //To finish, the win and lose alerts to indicate the end of the round and to restart the game. 
 function win() {
