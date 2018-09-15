@@ -30,6 +30,8 @@ function restartGame() {
   if (playerScore >= targetNumber){
     playerScore = 0;
     
+
+    
   } 
 }
 
