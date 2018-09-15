@@ -6,19 +6,115 @@
 //If the player's "score counter" exceeds the "target number" then it will be counted as a loss and added to the "losses counter"
 //The game will restart once a win or a loss is recorded.
 
+
+
+function randomNumber (x, y) {
+  return Math.floor(Math.random() * (y - x + 1)) + x;
+};
+
 //Here we generate the random "target number" that will appear when the game starts. This number has to be in a range so that it's never smaller than the 4 crystals combined.
-var targetNumber = Math.floor(Math.random() * 51) + 60; //I chose the number to be generated bewteen 50 and 100
+var targetNumber = randomNumber (19, 120);
 console.log(targetNumber);
 
 var winsCounter = 0;
 var lossesCounter = 0;
 var playerScore = 0;
+var crystals = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-var gray = Math.floor(Math.random() * 10) + 1; //This will generate 1-9 numbers
-var purple = Math.floor(Math.random() * 10) + 11; //This will generate 1-20 numbers 
-var green = Math.floor(Math.random() * 10) + 6; //This will generate 1-15 numbers
-var yellow = Math.floor(Math.random() * 10) + 11; //this will generate 1-20 nunmbers
-console.log(gray, purple, green, yellow);
+// To define the function that will assign a different value to each crystal
+function uniqueCrystalNumber () {
+  var index = randomNumber (0, crystals.length - 1);
+  var number = crystals[index];
+  console.log(index);
+  crystals = crystals.filter(function(value){
+  return value !== number;
+  });
+  return number;
+};
+
+var gray = Math.floor(Math.random() * crystals.length) + 1;
+var purple = Math.floor(Math.random() * crystals.length) + 1;
+var green = Math.floor(Math.random() * crystals.length) + 1;
+var yellow = Math.floor(Math.random() * crystals.length) + 1;
+
+
+//State the document.ready to trigger jquery
+$(document).ready(function(){
+
+  //Here the clicks will be added up and displayed under "your score"
+$("#gray").on('click', function() {
+  crystalValue = ($(this).attr("data-crystalValue"));
+  crystalValue = parseInt(crystalValue);
+  playerScore = playerScore + gray;
+        $("#playerScore").text(playerScore); 
+          
+        if (playerScore == targetNumber){
+          playerScore = 0;
+          resetCrystalNumber ();
+          win();
+        }
+        else if (playerScore > targetNumber){
+          playerScore = 0;
+          resetCrystalNumber ();
+          lose();
+        }   
+});
+
+$("#purple").on('click', function() {
+  crystalValue = ($(this).attr("data-crystalValue"));
+  crystalValue = parseInt(crystalValue);
+  playerScore = playerScore + purple;
+        $("#playerScore").text(playerScore); 
+          
+        if (playerScore == targetNumber){
+          playerScore = 0;
+          resetCrystalNumber ();
+          win();
+        }
+        else if (playerScore > targetNumber){
+          playerScore = 0;
+          resetCrystalNumber ();
+          lose();
+        }   
+});
+
+$("#green").on('click', function() {
+  crystalValue = ($(this).attr("data-crystalValue"));
+  crystalValue = parseInt(crystalValue);
+  playerScore = playerScore + green;
+        $("#playerScore").text(playerScore); 
+          
+        if (playerScore == targetNumber){
+          playerScore = 0;
+          resetCrystalNumber ();
+          win();
+        }
+        else if (playerScore > targetNumber){
+          playerScore = 0;
+          resetCrystalNumber ();
+          lose();
+        }   
+});
+
+$("#yellow").on('click', function() {
+  crystalValue = ($(this).attr("data-crystalValue"));
+  crystalValue = parseInt(crystalValue);
+  playerScore = playerScore + yellow;
+        $("#playerScore").text(playerScore); 
+          
+        if (playerScore == targetNumber){
+          playerScore = 0;
+          resetCrystalNumber ();
+          win();
+        }
+        else if (playerScore > targetNumber){
+          playerScore = 0;
+          resetCrystalNumber ();
+          lose();
+        }   
+});
+
+});
 
 //The random target number, the player's score, and the number of wins and losses will be written inside the card.
 $("#targetNumber").text(targetNumber);
@@ -26,63 +122,22 @@ $("#Wins").text(winsCounter);
 $("#Losses").text(lossesCounter);
 $("#playerScore").text(playerScore);
 
-function restartGame() {
-  if (playerScore >= targetNumber){
-    playerScore = 0;
-    
+function resetCrystalNumber () {
+  crystals = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+  targetNumber = randomNumber (19, 120);
+  playerScore = 0;
+  $("#playerScore").text(playerScore);
+  $("#targetNumber").text(targetNumber);
+};
 
-    
-  } 
-}
-
-//Here the clicks will be added up and displayed under "your score"
-$("#gray").on('click', function() {
-    playerScore = playerScore + gray;
-        $("#playerScore").text(playerScore); 
-          
-        if (playerScore == targetNumber){
-          win();
-        }
-        else if (playerScore > targetNumber){
-          lose();
-        }   
-});
-
-$("#purple").on('click', function() {
-  playerScore = playerScore + purple;
-      $("#playerScore").text(playerScore); 
-        
-      if (playerScore == targetNumber){
-        win();
-      }
-      else if (playerScore > targetNumber){
-        lose();
-      }   
-});
-
-$("#green").on('click', function() {
-  playerScore = playerScore + green;
-      $("#playerScore").text(playerScore); 
-        
-      if (playerScore == targetNumber){
-        win();
-      }
-      else if (playerScore > targetNumber){
-        lose();
-      }   
-});
-
-$("#yellow").on('click', function() {
-  playerScore = playerScore + yellow;
-      $("#playerScore").text(playerScore); 
-        
-      if (playerScore == targetNumber){
-        win();
-      }
-      else if (playerScore > targetNumber){
-        lose();
-      }   
-});
+// To define the function that will push the unique crystal number into the HTML
+function resetCrystalValues () {
+  $("#gray").attr("data-crystalValue", uniqueCrystalNumber());
+  $("#purple").attr("data-crystalValue", uniqueCrystalNumber());
+  $("#green").attr("data-crystalValue", uniqueCrystalNumber());
+  $("#yellow").attr("data-crystalValue", uniqueCrystalNumber());
+};
+console.log(gray, purple, green, yellow);
 
 //To finish, the win and lose alerts to indicate the end of the round and to restart the game. 
 function win() {
@@ -90,7 +145,8 @@ function win() {
 	alert("Congratulations, you won!");
 	winsCounter ++;
 	$("#Wins").text(winsCounter);
-	restartGame();
+  resetCrystalNumber();
+  
 }
 
 function lose() {
@@ -98,5 +154,5 @@ function lose() {
 	alert("Better luck next time!");
 	lossesCounter ++;
 	$("#Losses").text(lossesCounter);
-	restartGame();
+	resetCrystalNumber();
 }
