@@ -1,7 +1,9 @@
-![alt text](https://raw.githubusercontent.com/edumoran/Crystals-collector/master/assets/images/cover.jpg)
+<p align="center">
+  <img width="460" height="300" src="https://raw.githubusercontent.com/edumoran/Crystals-collector/master/assets/images/cover.jpg">
+</p>
 
 # Crystals collector
-1. For this game, the player has to guess the value of the crystals by adding them in order to to match a random number given. If your score surpasses the random number then you lose. Enjoy!
+1. For this game, the player has to guess the value of the crystals by adding them in order to match a random number given. If your score surpasses the random number then you lose. Enjoy!
 
 ## How this works
 * There will be four crystals displayed as buttons on the page. A random number will be shown too.
